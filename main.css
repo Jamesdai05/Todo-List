@@ -19,6 +19,7 @@
   --blue: #2d70fd;
   --green: #00d8a7;
   --white: #fff;
+  --font-color: #8f98a8;
 }
 
 body {
@@ -67,7 +68,7 @@ p {
   width: 60%;
   height: 50%;
   padding: 3rem;
-  background-color: var(--green);
+  background-color: var(--white);
   max-width: 35rem;
 }
 
@@ -92,4 +93,88 @@ h2 {
 
 input[type="text"]::placeholder {
   color: var(--grey);
+}
+
+.todo-container {
+  display: flex;
+  gap: 1rem;
+}
+
+#todoList p {
+  color: var(--font-color);
+}
+
+.disabled {
+  display: flex;
+  text-decoration: line-through;
+}
+
+input[type="checkbox"]::before {
+  content: "\2713";
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.7rem;
+  text-align: center;
+  border: 0.06rem solid var(--grey-border);
+  border-radius: 50%;
+  color: transparent;
+}
+
+input[type="checkbox"]::before::after {
+  content: "\2713";
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.7rem;
+  text-align: center;
+  border: 0.06rem solid var(--grey-border);
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--green);
+  border-radius: 50%;
+  border: 0.06rem solid var(--grey-light);
+}
+
+.counter {
+  border: 0.06rem solid var(--grey-light);
+}
+
+.counter-container {
+  margin: 0.5em;
+  display: flex;
+  height: 2rem;
+  justify-content: space-between;
+}
+
+.counter-container p {
+  align-self: center;
+  color: var(--grey);
+}
+
+.counter-container button {
+  border: none;
+  background-color: transparent;
+  color: var(--grey);
+  font-size: 1rem;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  /* background-color: var(--dark); */
+  height: 10vh;
+}
+
+.scroll {
+  height: 18rem;
+  scrollbar-width: thin;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: 0.5rem;
+}
+.scroll::-webkit-scrollbar-track {
+  display: none;
 }
