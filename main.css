@@ -47,9 +47,9 @@ body {
   bottom: 0.5rem;
 }
 
-ul li {
+/* ul li {
   list-style-type: disc;
-}
+} */
 
 h2,
 p {
@@ -109,6 +109,13 @@ input[type="text"]::placeholder {
   text-decoration: line-through;
 }
 
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
 input[type="checkbox"]::before {
   content: "\2713";
   display: inline-block;
@@ -121,7 +128,7 @@ input[type="checkbox"]::before {
   color: transparent;
 }
 
-input[type="checkbox"]::before::after {
+input[type="checkbox"]:checked::before {
   content: "\2713";
   display: inline-block;
   width: 2rem;

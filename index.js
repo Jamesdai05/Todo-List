@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       addTodo();
     }
   });
-  // deleteButton.addEventListener("click", deleteAllItems());
-  // displayItems();
+  deleteButton.addEventListener("click", deleteAllItems);
+  displayItems();
 });
 
 function addTodo() {
@@ -42,8 +42,30 @@ function addTodo() {
   }
 }
 
-function deleteAllItems() {}
+function deleteAllItems() {
+  console.log("deleted");
+}
 
-function saveToLocalStorage() {}
+function saveToLocalStorage() {
+  localStorage.setItem("todo", JSON.stringify(todo));
+}
 
-function displayItems() {}
+function displayItems() {
+  todoList.innerHTML = "";
+  todo.forEach((item, index) => {
+    const p = document.createElement("p");
+    p.innerHTML = `
+    <div class="todo-container">
+      <input type="checkbox" class="todo-checkbox" id="input-${index}" ${
+      item.disabled ? "checked" : ""
+    }/>
+      <p id="todo-${index}" class=${
+      item.disabled ? "disabled" : ""
+    }" onclick="editTask(${index})" >${item.text}</p>
+    </div>`;
+    p.querySelector(".todo-checkbox").addEventListener("change", () => {
+      toggleTask(index);
+    });
+    todoList.appendChild(p);
+  });
+}
