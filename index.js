@@ -42,12 +42,25 @@ function addTodo() {
   }
 }
 
-function deleteAllItems() {
-  console.log("deleted");
-}
+//edit item
+function editItem(index) {
+  const todoItem = document.getElementById(`todo-${index}`);
+  // console.log(todoItem);
+  const existingText = todo[index].text;
+  const inputElement = document.createElement("input");
 
-function saveToLocalStorage() {
-  localStorage.setItem("todo", JSON.stringify(todo));
+  inputElement.value = existingText;
+  todoItem.replaceWith(inputElement);
+  inputElement.focus();
+
+  inputElement.addEventListener("blur", () => {
+    const updatedText = inputElement.value.trim();
+    if (updatedText) {
+      todo[index].text = updatedText;
+      saveToLocalStorage();
+    }
+    displayItems();
+  });
 }
 
 function displayItems() {
@@ -61,11 +74,29 @@ function displayItems() {
     }/>
       <p id="todo-${index}" class=${
       item.disabled ? "disabled" : ""
-    }" onclick="editTask(${index})" >${item.text}</p>
+    }" onclick="editItem(${index})" >${item.text}</p>
     </div>`;
     p.querySelector(".todo-checkbox").addEventListener("change", () => {
       toggleTask(index);
     });
     todoList.appendChild(p);
   });
+  itemCount.textContent = todo.length;
+}
+
+function deleteAllItems() {
+  // console.log("deleted");
+  todo = [];
+  saveToLocalStorage();
+  displayItems();
+}
+
+function saveToLocalStorage() {
+  localStorage.setItem("todo", JSON.stringify(todo));
+}
+
+function toggleTask(index) {
+  todo[index].disabled = !todo[index].disabled;
+  saveToLocalStorage();
+  displayItems();
 }
